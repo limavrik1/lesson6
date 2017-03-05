@@ -10,11 +10,13 @@ error_reporting(E_ALL);
 ini_set('display_errors', true);
 ini_set('html_errors', false);
 
+mb_internal_encoding('UTF-8');
+
 if (!empty($_POST) && isset($_GET['id'])) {
     $testId = filter_input(INPUT_GET, 'id');
     if ($testId !== NULL || $testId !== false) {
         if ($testContents = file_get_contents($testId)) {
-            $testContents = utf8_encode($testContents);
+//            $testContents = utf8_encode($testContents);
             $results = json_decode($testContents, true);
             $title = $results['title'];
             $questionCount = count($results['data']);
@@ -39,7 +41,8 @@ if (!empty($_POST) && isset($_GET['id'])) {
 
                 <link rel="stylesheet" href="css/normalize.css">
                 <link rel="stylesheet" href="css/fonts.css">
-                <link rel="stylesheet" href="css/admin.css">
+                <link rel="stylesheet" href="css/font-awesome.css">
+                <link rel="stylesheet" href="css/main.css">
             </head>
             <body>
             <!--[if lte IE 9]>
@@ -47,8 +50,8 @@ if (!empty($_POST) && isset($_GET['id'])) {
                 Ваш браузер устарел! Скачайте новую версию <a href="http://browsehappy.com/locale=ru_ru">браузера</a>
             </p>
             <![endif]-->
-            <div class="wrapper wrapper_title">
-            <div class="title">
+            <div class="wrapper wrapper_center">
+            <div class="content">
             <div class="test">
                 <h1>Результаты теста: <?= $title ?></h1>
             </div>
@@ -85,7 +88,7 @@ if (!empty($_POST) && isset($_GET['id'])) {
     $testId = filter_input(INPUT_GET, 'id');
     if ($testId !== NULL || $testId !== false) {
         if ($testContents = file_get_contents($testId)) {
-            $testContents = utf8_encode($testContents);
+//            $testContents = utf8_encode($testContents);
             $results = json_decode($testContents, true);
             $title = $results['title'];
             $questionCount = count($results['data']);
@@ -109,7 +112,8 @@ if (!empty($_POST) && isset($_GET['id'])) {
 
                 <link rel="stylesheet" href="css/normalize.css">
                 <link rel="stylesheet" href="css/fonts.css">
-                <link rel="stylesheet" href="css/admin.css">
+                <link rel="stylesheet" href="css/font-awesome.css">
+                <link rel="stylesheet" href="css/main.css">
 
             </head>
             <body>
@@ -119,7 +123,7 @@ if (!empty($_POST) && isset($_GET['id'])) {
             </p>
             <![endif]-->
             <div class="wrapper wrapper_title">
-            <div class="title">
+            <div class="content">
             <h1><?= $title ?></h1>
             <form method="post" target="_blank">
             <ol>
@@ -127,13 +131,15 @@ if (!empty($_POST) && isset($_GET['id'])) {
             for ($li = 0; $li < $questionCount; $li++) {
                 echo '<li>';
                 echo '<h3>' . $results['data'][$li]['question'] . '</h3>';
+                echo '<div class="questions">';
                 for ($divCount = 0; $divCount < $inputValueCount[$li]; $divCount++) {
-                    echo '<div>';
+                    echo '<div class="question">';
                     $inputValue = $results['data'][$li]['inputValue'][$divCount];
                     echo '<input type="' . $results['data'][$li]['inputType'] . '" name="question-answers-' . $li . '" id="question-answers-' . $li . '-' . $inputValue . '" value="' . $inputValue . '"/>';
                     echo '<label for="question-answers-' . $li . '-' . $inputValue . '">' . $results['data'][$li]['inputLabelValue'][$divCount] . '</label>';
                     echo '</div>';
                 }
+                echo '</div>';
                 echo '</li>';
             }
         }

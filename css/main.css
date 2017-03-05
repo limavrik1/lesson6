@@ -32,6 +32,19 @@ a{
 	text-align: center;
 	min-height: 100%;
 	overflow: hidden;
+	/*position: absolute;*/
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+}
+
+.wrapper_center{
+	min-width: 940px;
+	text-align: center;
+	min-height: 100%;
+	overflow: hidden;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -40,7 +53,7 @@ a{
 	overflow: hidden;
 }
 
-.wrapper_title:before {
+.wrapper_center:before {
 	content: "";
 	display: inline-block;
 	height: 100%;
@@ -48,9 +61,24 @@ a{
 	vertical-align: middle;
 }
 
-.title{
+.content{
 	display: inline-block;
 	vertical-align: middle;
 	width: 920px;
 	/*margin: 0 auto;*/
+}
+
+.questions{
+	display: inline-block;
+	text-align: center;
+}
+
+.question{
+	text-align: left;
+}
+
+
+
+.result{
+	text-align: center;
 }

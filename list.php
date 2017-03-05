@@ -5,6 +5,7 @@
  * Date: 26.02.2017
  * Time: 17:50
  */
+mb_internal_encoding('UTF-8');
 ?>
 <!DOCTYPE html>
 <html lang="ru-RU">
@@ -21,7 +22,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/font-awesome.css">
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/main.css">
 
 </head>
 <body>
@@ -30,13 +31,13 @@
     Ваш браузер устарел! Скачайте новую версию <a href="http://browsehappy.com/locale=ru_ru">браузера</a>
 </p>
 <![endif]-->
-<div class="wrapper wrapper_title">
-    <div class="title">
+<div class="wrapper wrapper_center">
+    <div class="content">
         <ul class="tests__list">
             <? if (!empty(glob("data/*.json"))) {
                 foreach (glob("data/*.json") as $filename) {
                     if ($contents = file_get_contents($filename)) {
-                        $contents = utf8_encode($contents);
+//                        $contents = utf8_encode($contents);
                         $results = json_decode($contents, true);
                         if (array_key_exists('title', $results)) {
                             ?>

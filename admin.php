@@ -4,7 +4,11 @@
  * User: MAV
  * Date: 25.02.2017
  * Time: 21:03
+ http://www.quirksmode.org/dom/inputfile.html
  */
+
+mb_internal_encoding('UTF-8');
+
 if (isset($_FILES['testFile'])) {
 
     $tmp_files = $_FILES['testFile']['tmp_name'];
@@ -35,7 +39,8 @@ if (isset($_FILES['testFile'])) {
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/fonts.css">
-        <link rel="stylesheet" href="css/admin.css">
+        <link rel="stylesheet" href="css/font-awesome.css">
+        <link rel="stylesheet" href="css/main.css">
 
     </head>
     <body>
@@ -44,8 +49,8 @@ if (isset($_FILES['testFile'])) {
         Ваш браузер устарел! Скачайте новую версию <a href="http://browsehappy.com/locale=ru_ru">браузера</a>
     </p>
     <![endif]-->
-    <div class="wrapper wrapper_title">
-        <div class="title">
+    <div class="wrapper wrapper_center">
+        <div class="content">
             <div class="test">
                 <h1>Загрузка тестов</h1>
             </div>
