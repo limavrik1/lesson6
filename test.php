@@ -16,7 +16,6 @@ if (!empty($_POST) && isset($_GET['id'])) {
     $testId = filter_input(INPUT_GET, 'id');
     if ($testId !== NULL || $testId !== false) {
         if ($testContents = file_get_contents($testId)) {
-//            $testContents = utf8_encode($testContents);
             $results = json_decode($testContents, true);
             $title = $results['title'];
             $questionCount = count($results['data']);
@@ -68,7 +67,12 @@ if (!empty($_POST) && isset($_GET['id'])) {
                 $dataID++;
             }
             echo '<strong>Правильно: ' . $resultScore . " из $postCount </strong></br>";
-            echo '<br/><a href="list.php">Назад к списку тестов</a>';
+//            echo '<br/><a href="list.php">Назад к списку тестов</a>'; ?>
+
+            <div class="file-upload btn btn-info">
+                <a href="list.php">Назад к списку тестов</a>
+            </div>
+            <?
             die (1);
         }
         ?>
@@ -88,7 +92,6 @@ if (!empty($_POST) && isset($_GET['id'])) {
     $testId = filter_input(INPUT_GET, 'id');
     if ($testId !== NULL || $testId !== false) {
         if ($testContents = file_get_contents($testId)) {
-//            $testContents = utf8_encode($testContents);
             $results = json_decode($testContents, true);
             $title = $results['title'];
             $questionCount = count($results['data']);
@@ -126,9 +129,11 @@ if (!empty($_POST) && isset($_GET['id'])) {
             <div class="content">
             <h1><?= $title ?></h1>
             <form method="post" target="_blank">
-            <ol>
+            <ol type="1">
+            <div class="list__div">
             <?
             for ($li = 0; $li < $questionCount; $li++) {
+                echo '<div class="div_li">';
                 echo '<li>';
                 echo '<h3>' . $results['data'][$li]['question'] . '</h3>';
                 echo '<div class="questions">';
@@ -141,12 +146,14 @@ if (!empty($_POST) && isset($_GET['id'])) {
                 }
                 echo '</div>';
                 echo '</li>';
+                echo '</div>';
             }
         }
         ?>
+        </div>
         </ol>
         <div>
-            <button>Отправить</button>
+            <button class="file-upload btn btn-info">Отправить</button>
         </div>
         </form>
         </div>

@@ -34,28 +34,32 @@ mb_internal_encoding('UTF-8');
 <div class="wrapper wrapper_center">
     <div class="content">
         <ul class="tests__list">
-            <? if (!empty(glob("data/*.json"))) {
-                foreach (glob("data/*.json") as $filename) {
-                    if ($contents = file_get_contents($filename)) {
-//                        $contents = utf8_encode($contents);
-                        $results = json_decode($contents, true);
-                        if (array_key_exists('title', $results)) {
-                            ?>
-                            <li class="tests__list-item">
-                                <a href="test.php?id=<?= $filename ?>" class="tests__list-link">
-                                    <i class="tests__list-icon fa fa-list"></i>
-                                    <span class="tests__list-text">
+            <div class="list__div">
+                <h3>Список тестов:</h3>
+                <? if (!empty(glob("data/*.json"))) {
+                    foreach (glob("data/*.json") as $filename) {
+                        if ($contents = file_get_contents($filename)) {
+                            $results = json_decode($contents, true);
+                            if (array_key_exists('title', $results)) {
+                                ?>
+                                <li class="tests__list-item">
+                                    <a href="test.php?id=<?= $filename ?>" class="tests__list-link">
+                                        <i class="tests__list-icon fa fa-list"></i>
+                                        <span class="tests__list-text">
                                         <? echo $results['title']; ?>
                                     </span>
-                                </a>
-                            </li>
-                        <? }else { echo "Некорректный файл. Проверьте формат теста $filename. <br />"; }
+                                    </a>
+                                </li>
+                            <? } else {
+                                echo "Некорректный файл. Проверьте формат теста $filename. <br />";
+                            }
+                        }
                     }
-                }
-            } else {
-                echo 'Тесты не загружены.';
-                echo '<br/><a href="admin.php">Загрузить тесты ...</a>';
-            } ?>
+                } else {
+                    echo 'Тесты не загружены.';
+                    echo '<br/><a href="admin.php">Загрузить тесты ...</a>';
+                } ?>
+            </div>
         </ul>
     </div>
 </div>

@@ -4,12 +4,18 @@
  * User: MAV
  * Date: 25.02.2017
  * Time: 21:03
- http://www.quirksmode.org/dom/inputfile.html
+ * http://www.quirksmode.org/dom/inputfile.html
  */
 
 mb_internal_encoding('UTF-8');
+//error_reporting(E_ALL);
+//ini_set('display_errors', true);
+//ini_set('html_errors', false);
 
+//var_dump($_FILES);
 if (isset($_FILES['testFile'])) {
+
+//    var_dump($_FILES);
 
     $tmp_files = $_FILES['testFile']['tmp_name'];
     $fileName = 'data/' . $_FILES['testFile']['name'];
@@ -57,15 +63,15 @@ if (isset($_FILES['testFile'])) {
             <div class="form">
                 <form method="post" enctype="multipart/form-data">
                     <input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
-                    <div>
-                        <label for="testFile">Выберите файл с тестом:</label>
-                        <input type="file" name="testFile"><br/>
+                    <div class="file-upload btn btn-info">
+                        <span>Выбрать файл</span>
+                        <input name="testFile" class="testFile" type="file"/>
                     </div>
-                    <!--                <input type="submit" value="Отправить" />-->
-                    <div>
-                        <button>Отправить</button>
-                    </div>
+                    <input type="submit" value="Отправить" class="file-upload btn btn-info"/>
                 </form>
+                <div class="file-upload btn btn-info">
+                    <a href="list.php">Перейти к списку тестов</a>
+                </div>
             </div>
         </div>
     </div>
