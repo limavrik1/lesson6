@@ -55,7 +55,7 @@ if (!empty($_POST) && isset($_GET['id'])) {
                 <h1>Результаты теста: <?= $title ?></h1>
             </div>
             <div class="result">
-            <?
+            <?php
             $resultScore = 0;
             $dataID = 0;
             foreach ($_POST as $questionKey => $questionValue) {
@@ -72,8 +72,8 @@ if (!empty($_POST) && isset($_GET['id'])) {
             <div class="file-upload btn btn-info">
                 <a href="list.php">Назад к списку тестов</a>
             </div>
-            <?
-            die (1);
+            <?php
+//            die (1);
         }
         ?>
         </div>
@@ -81,7 +81,7 @@ if (!empty($_POST) && isset($_GET['id'])) {
     </div>
     </body>
         </html>
-        <?
+        <?php
     } else {
         echo 'Неправильный номер теста';
         echo '<br/><a href="list.php">Назад к списку тестов</a>';
@@ -129,9 +129,9 @@ if (!empty($_POST) && isset($_GET['id'])) {
             <div class="content">
             <h1><?= $title ?></h1>
             <form method="post" target="_blank">
-            <ol type="1">
+            <ol>
             <div class="list__div">
-            <?
+            <?php
             for ($li = 0; $li < $questionCount; $li++) {
                 echo '<div class="div_li">';
                 echo '<li>';
@@ -160,7 +160,7 @@ if (!empty($_POST) && isset($_GET['id'])) {
     </div>
     </body>
         </html>
-        <?
+        <?php
     } else {
         echo 'Неправильный номер теста';
         echo '<br/><a href="list.php">Назад к списку тестов</a>';

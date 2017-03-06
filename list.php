@@ -5,6 +5,10 @@
  * Date: 26.02.2017
  * Time: 17:50
  */
+
+error_reporting(E_ALL);
+ini_set('display_errors', true);
+
 mb_internal_encoding('UTF-8');
 ?>
 <!DOCTYPE html>
@@ -36,7 +40,8 @@ mb_internal_encoding('UTF-8');
         <ul class="tests__list">
             <div class="list__div">
                 <h3>Список тестов:</h3>
-                <? if (!empty(glob("data/*.json"))) {
+                <?php
+                if (!empty(glob("data/*.json"))) {
                     foreach (glob("data/*.json") as $filename) {
                         if ($contents = file_get_contents($filename)) {
                             $results = json_decode($contents, true);
@@ -46,11 +51,11 @@ mb_internal_encoding('UTF-8');
                                     <a href="test.php?id=<?= $filename ?>" class="tests__list-link">
                                         <i class="tests__list-icon fa fa-list"></i>
                                         <span class="tests__list-text">
-                                        <? echo $results['title']; ?>
+                                        <?php echo $results['title']; ?>
                                     </span>
                                     </a>
                                 </li>
-                            <? } else {
+                            <?php } else {
                                 echo "Некорректный файл. Проверьте формат теста $filename. <br />";
                             }
                         }

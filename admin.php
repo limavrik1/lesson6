@@ -8,14 +8,11 @@
  */
 
 mb_internal_encoding('UTF-8');
-//error_reporting(E_ALL);
-//ini_set('display_errors', true);
+error_reporting(E_ALL);
+ini_set('display_errors', true);
 //ini_set('html_errors', false);
 
-//var_dump($_FILES);
 if (isset($_FILES['testFile'])) {
-
-//    var_dump($_FILES);
 
     $tmp_files = $_FILES['testFile']['tmp_name'];
     $fileName = 'data/' . $_FILES['testFile']['name'];
@@ -29,8 +26,7 @@ if (isset($_FILES['testFile'])) {
         echo 'Возникли проблемы с сохранением загруженного файла';
     }
     echo '<br/><a href="admin.php">Назад к загрузке</a>';
-} else {
-    ?>
+} else { ?>
     <!DOCTYPE html>
     <html lang="ru-RU">
 
@@ -77,6 +73,4 @@ if (isset($_FILES['testFile'])) {
     </div>
     </body>
     </html>
-    <?
-}
-?>
+<?php } ?>
